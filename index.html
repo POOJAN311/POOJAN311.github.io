@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Personal Website</title>
+  <title>Poojan</title>
   <link rel="stylesheet" href="style.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
@@ -35,7 +35,9 @@
 
   <section>
     <div id="Home">
-      <span class="position-absolute trigger"><!-- hidden trigger to apply 'stuck' styles --></span>
+      <span class="position-absolute trigger">
+        <!-- hidden trigger to apply 'stuck' styles -->
+      </span>
       <nav style="background-color: rgb(141, 168, 209);" class="navbar fixed-top navbar-expand-sm navbar-dark p-md-3">
         <div class="container">
           <h2 style="color: #fff;" class="navbar-brand" href="#">POOJAN</h2>
@@ -320,7 +322,7 @@
           <a href="./POOJAN_PATEL.pdf" download="POOJAN_PATEL.pdf">
             <button class="btn-hover color-7">DOWNLOAD CV</button>
           </a>
-          
+
         </div>
         <h3
           style="color:crimson; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
@@ -410,9 +412,7 @@
                 style="font-size: 5vh;"></i>&nbsp;<i class="fa-brands fa-bootstrap" style="font-size: 5vh;"></i>
             </p>
             <div class="buttons">
-              <a href="#" class="btn btn-primary"><span>Preview</span>&nbsp;<i
-                  class="fa-sharp fa-solid fa-up-right-from-square"></i></a>&nbsp;
-              <a href="#" class="btn btn-success">Source Code</a>
+              <a href="https://github.com/POOJAN-PJ/Poojan" class="btn btn-success">Source Code</a>
             </div>
           </div>
         </div>
@@ -437,9 +437,7 @@
                 style="font-size: 5vh;"></i>
             </p>
             <div class="buttons">
-              <a href="" class="btn btn-primary"><span>Preview</span>&nbsp;<i
-                  class="fa-sharp fa-solid fa-up-right-from-square"></i></a>&nbsp;
-              <a href="" class="btn btn-success">Source Code</a>
+              <a href="https://github.com/POOJAN-PJ/VCC-backend" class="btn btn-success">Source Code</a>
             </div>
           </div>
         </div>
@@ -458,8 +456,6 @@
               voluptas aspernatur aliquam illum distinctio enim minima dignissimos in ea tempore odit, facilis deleniti
               dolore earum.</p>
             <div class="buttons">
-              <a href="" class="btn btn-primary"><span>Preview</span>&nbsp;<i
-                  class="fa-sharp fa-solid fa-up-right-from-square"></i></a>&nbsp;
               <a href="" class="btn btn-success">Source Code</a>
             </div>
           </div>
@@ -508,7 +504,7 @@
         </div>
       </div>
       <div class="contactForm">
-        <form action="https://formspree.io/f/xwkjedvd" method="POST">
+        <form id="Contactform" name="submit-to-google-sheet">
           <h2>Send Messages</h2>
           <div class="inputBox">
             <input type="text" name="Fullname" required="required">
@@ -525,6 +521,7 @@
           <div class="inputBox">
             <input type="submit" name="submitform" value="Send" required="required">
           </div>
+          <span id="msg"></span>
         </form>
       </div>
     </div>
@@ -561,9 +558,11 @@
               Aspiring
               Fullstack Javascript Developer.</p>
           </div>
-          <div class="col item social"><a href="https://www.facebook.com/poojan.patel.9883739/" target="_blank"><i class="fab fa-facebook-f"></i></a><a target="_blank" href="https://www.linkedin.com/in/poojan-patel02/"><i
-                class="fab fa-linkedin"></i></a><a target="_blank" href="https://github.com/POOJAN-PJ"><i class="fab fa-github"></i></a><a target="_blank" href="https://www.instagram.com/poojan__patel__/"><i
-                class="fab fa-instagram"></i></a></div>
+          <div class="col item social"><a href="https://www.facebook.com/poojan.patel.9883739/" target="_blank"><i
+                class="fab fa-facebook-f"></i></a><a target="_blank"
+              href="https://www.linkedin.com/in/poojan-patel02/"><i class="fab fa-linkedin"></i></a><a target="_blank"
+              href="https://github.com/POOJAN-PJ"><i class="fab fa-github"></i></a><a target="_blank"
+              href="https://www.instagram.com/poojan__patel__/"><i class="fab fa-instagram"></i></a></div>
         </div>
         <p class="copyright">© 2022 | Designed &amp; coded with 💙 by Poojan Patel</p>
       </div>
@@ -602,6 +601,25 @@
         }
       }
     }
+  </script>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbw87uG_z1OVmZoslEY_FGmuevY4Vx8aF5Ajl7CRS1Vz457czgyPQkICWqbSWEQbdpwl/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById('msg')
+
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => {
+          msg.innerHTML = "Thank You for Your response!!"
+          setTimeout(function() {
+            msg.innerHTML=""
+          }, 3000);
+          form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
   </script>
   <script>
     const myTags = [
